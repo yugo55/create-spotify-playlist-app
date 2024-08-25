@@ -2,20 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-.ff-sidebar {
-  overflow: hidden;
-}
-
-.ff-sidebar:hover {
-  overflow-y: auto;
-}
-
 p {
   color: white;
 }
 
 li {
   list-style: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  opacity: 0;
 }
 
 :hover::-webkit-scrollbar {
