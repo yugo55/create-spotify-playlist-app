@@ -29,12 +29,12 @@ export async function GET(req: NextRequest) {
   const codeChallenge = base64encode(hashed);
 
   const params = new URLSearchParams({
-    client_id: process.env.SPOTIFY_CLIENT_ID!,
+    client_id: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID!,
     response_type: 'code',
     redirect_uri: 'http://localhost:3000/spotify/callback',
     code_challenge_method: 'S256',
     code_challenge: codeChallenge,
-    scope: 'user-read-private user-read-email user-read-recently-played user-top-read playlist-modify-public playlist-modify-private streaming',
+    scope: 'user-read-private user-read-email user-read-recently-played user-top-read playlist-modify-public playlist-modify-private streaming user-follow-read',
   });
 
   const authUrl = `https://accounts.spotify.com/authorize?${params.toString()}`;

@@ -1,10 +1,6 @@
-'use client';
-
-import { useState } from 'react';
+"use client"
 
 export default function Page() {
-  const [authUrl, setAuthUrl] = useState<string | null>(null);
-
   const handleLogin = async () => {
     try {
       const response = await fetch('/api/spotify/auth');
