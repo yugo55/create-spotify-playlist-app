@@ -3,9 +3,11 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import GeneratePlaylistPopup from '@/app/ui/generatePlaylistPopup';
 
 export default function Page() {
   const [userData, setUserData] = useState(null);
+  const [isPopupVisible, setPopupVisible] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -31,11 +33,18 @@ export default function Page() {
     return <div>Loading...</div>;
   }
 
+  const togglePopup = () => {
+    setPopupVisible(!isPopupVisible);
+  };
+
   return (
     <div className="h-full p-5 pb-0 flex flex-col">
       <div className="flex justify-between px-2 items-center">
         <p className="font-semibold text-xl">マイプレイリスト</p>
-        <button className="block text-black text-4xl bg-green-500 w-20 rounded-full hover:opacity-70">+</button>
+        <button className="block text-black text-4xl bg-green-500 w-20 rounded-full hover:opacity-70" onClick={togglePopup}>+</button>
+        {isPopupVisible && (
+          <GeneratePlaylistPopup onClose={togglePopup} />
+        )}
       </div>
       <ul className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-full mt-2 overflow-y-auto">
         <li className="hover:bg-[#252525] inline-block p-2 rounded-xl mb-3">
