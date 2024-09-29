@@ -18,7 +18,7 @@ export default function Page() {
       console.error('Error during Spotify login:', error);
     }
   };
-  
+
   return (
     <main className="h-screen grid place-items-center bg-[#202020]">
       <div>
