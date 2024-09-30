@@ -1,3 +1,6 @@
+// TODO: お気に入りアーティストの楽曲をstoreに格納するように変更
+// プレイリスト作成時にもう一度お気に入りアーティストの楽曲を取得する処理をしなくて済むようにするため
+
 "use client";
 
 import { useEffect, useState } from "react";

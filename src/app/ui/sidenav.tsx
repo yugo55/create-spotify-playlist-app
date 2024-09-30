@@ -4,10 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { RootState } from "@/src/store";
-import getFollowedArtists from "@/src/app/tools/getFollowedArtists";
+import fetchFollowedArtists from "@/src/app/tools/fetchFollowedArtists";
 
 export default function SideNav() {
-  getFollowedArtists();
+  fetchFollowedArtists();
   
   const followedArtists = useSelector((state: RootState) => state.artist.artists);
   

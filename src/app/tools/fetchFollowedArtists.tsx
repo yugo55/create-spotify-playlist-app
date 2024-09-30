@@ -3,7 +3,7 @@
 import { useDispatch } from "react-redux";
 import { setArtists } from "@/src/features/artist/artistSlice";
 
-export default async function getFollowedArtists() {
+export default async function fetchFollowedArtists() {
   const dispatch = useDispatch();
 
   try {
