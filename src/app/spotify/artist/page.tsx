@@ -25,6 +25,8 @@ export default function Page() {
     if (albums.length > 0) {
       fetchAlbumsTracks(albums, setTracks);
 
+      setArtistName(albums[0].artists[0].name);
+
       const initialVisibility = albums.reduce((acc, album) => {
         acc[album.id] = true;
         return acc;
