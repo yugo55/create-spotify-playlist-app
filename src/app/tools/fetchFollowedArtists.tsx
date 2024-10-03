@@ -27,8 +27,8 @@ export default async function fetchFollowedArtists() {
       throw new Error("アーティスト情報の取得に失敗しました。");
     }
 
-    const followedArtistsData = await response.json();
-    dispatch(setArtists(followedArtistsData.artists.items));
+    const followedArtists = await response.json();
+    dispatch(setArtists(followedArtists.artists.items));
   } catch (error) {
     console.error("お気に入りアーティストの取得に失敗しました:", error);
   }

@@ -1,10 +1,9 @@
-// TODO: お気に入りアーティストの楽曲をstoreに格納するように変更
-// プレイリスト作成時にもう一度お気に入りアーティストの楽曲を取得する処理をしなくて済むようにするため
-
 "use client";
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import fetchArtistAlbums from "@/src/app/tools/fetchArtistAlbums";
+import fetchAlbumsTracks from "@/src/app/tools/fetchAlbumsTracks";
 
 export default function Page() {
   const [albums, setAlbums] = useState<any[]>([]);
@@ -14,125 +13,25 @@ export default function Page() {
     [key: string]: boolean;
   }>({});
   const searchParams = useSearchParams();
-  const artistId = searchParams.get("artistId");
+  const artistId = searchParams.get("artistId")!;
 
   useEffect(() => {
-    const fetchArtistInfo = async () => {
-      try {
-        const accessToken = localStorage.getItem("access_token");
-        if (!accessToken) {
-          console.error("アクセストークンが見つかりません");
-          return;
-        }
-
-        const response = await fetch(
-          `https://api.spotify.com/v1/artists/${artistId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("アーティスト情報の取得に失敗しました。");
-        }
-
-        const artist = await response.json();
-        setArtistName(artist.name);
-      } catch (error) {
-        console.error("アーティスト情報の取得に失敗しました:", error);
-      }
-    };
-
-    const fetchArtistAlbums = async () => {
-      try {
-        const accessToken = localStorage.getItem("access_token");
-        if (!accessToken) {
-          console.error("アクセストークンが見つかりません。");
-          return;
-        }
-
-        const response = await fetch(
-          `https://api.spotify.com/v1/artists/${artistId}/albums?limit=50`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("楽曲情報の取得に失敗しました。");
-        }
-
-        const albums = await response.json();
-        setAlbums(albums.items);
-
-        const initialVisibility: { [key: string]: boolean } = {};
-        const albumIdsArray: Array<string> = []
-        albums.items.forEach((album: any) => {
-          initialVisibility[album.id] = true;
-          albumIdsArray.push(album.id)
-        });
-        fetchAlbumTracks(albumIdsArray);
-        setVisibleTracks(initialVisibility);
-      } catch (error) {
-        console.error("楽曲の取得に失敗しました:", error);
-      }
-    };
-
     if (artistId) {
-      fetchArtistInfo();
-      fetchArtistAlbums();
+      fetchArtistAlbums(artistId, setAlbums);
     }
   }, [artistId]);
+  
+  useEffect(() => {
+    if (albums.length > 0) {
+      fetchAlbumsTracks(albums, setTracks);
 
-  const fetchAlbumTracks = async (albumIdsArray: string[]) => {
-    try {
-      const accessToken = localStorage.getItem("access_token");
-      if (!accessToken) {
-        console.error("アクセストークンが見つかりません。");
-        return;
-      }
-
-      const chunkedAlbumIds = [];
-      for (let i = 0; i < albumIdsArray.length; i += 20) {
-        chunkedAlbumIds.push(albumIdsArray.slice(i, i + 20));
-      }
-
-      const requests = chunkedAlbumIds.map((chunk) => {
-        const ids = chunk.join(",");
-        return fetch(`https://api.spotify.com/v1/albums?ids=${ids}`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },  
-        });
-      });
-
-      const responses = await Promise.all(requests);
-
-      const newTracks: { [key: string]: any[] } = {};
-      
-      for (const response of responses) {
-        if (!response.ok) {
-          throw new Error("楽曲情報の取得に失敗しました。");
-        }
-
-        const trackData = await response.json();
-        trackData.albums.forEach((album: any) => {
-          newTracks[album.id] = album.tracks.items;
-        });
-      }
-
-      setTracks((prevTracks) => ({
-        ...prevTracks,
-        ...newTracks,
-      }));
-    } catch (error) {
-      console.error(`楽曲の取得に失敗しました:`, error);
+      const initialVisibility = albums.reduce((acc, album) => {
+        acc[album.id] = true;
+        return acc;
+      }, {} as { [key: string]: boolean });
+      setVisibleTracks(initialVisibility);
     }
-  };
+  }, [albums]);
 
   const toggleTracksVisibility = async (albumId: string) => {
     setVisibleTracks((prevVisibleTracks) => ({
