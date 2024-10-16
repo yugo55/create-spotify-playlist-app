@@ -1,6 +1,6 @@
 import React, { SetStateAction } from "react";
 
-export default async function fetchAlbumsTracks(albums: any[], setTracks: React.Dispatch<SetStateAction<{ [key: string]: any[]; }>>) {
+export default async function fetchAlbumsTracks(albums: any[], setTracks?: React.Dispatch<SetStateAction<{ [key: string]: any[]; }>>) {
   try {
     const accessToken = localStorage.getItem("access_token");
     if (!accessToken) {
@@ -36,13 +36,16 @@ export default async function fetchAlbumsTracks(albums: any[], setTracks: React.
       trackData.albums.forEach((album: any) => {
         newTracks[album.id] = album.tracks.items;
       });
-
     }
 
-    setTracks((prevTracks) => ({
-      ...prevTracks,
-      ...newTracks,
-    }));
+    if (setTracks) {
+      setTracks((prevTracks) => ({
+        ...prevTracks,
+        ...newTracks,
+      }));
+    } else {
+      return newTracks
+    }
   } catch (error) {
     console.error("楽曲の取得に失敗しました:", error);
   }
