@@ -15,9 +15,10 @@ export default function GeneratePlaylistPopup({
 }: GeneratePlaylistPopupProps) {
   const artists = useSelector((state: RootState) => state.artist.artists);
   const [selectedArtistIds, setSelectedArtistIds] = useState<string[]>([]);
-  const [albums, setAlbums] = useState<any[]>([]);
-  const [tracks, setTracks] = useState<{ [key: string]: any[] }>({});
+  // const [albums, setAlbums] = useState<any[]>([]);
+  // const [tracks, setTracks] = useState<{ [key: string]: any[] }>({});
   const [selectedQuantity, setSelectedQuantity] = useState<number>(30);
+  const [playlistName, setPlaylistName] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPlaylistCreated, setIsPlaylistCreated] = useState<boolean>(false);
   const [randomTracks, setRandomTracks] = useState<any[]>([]);
@@ -32,6 +33,10 @@ export default function GeneratePlaylistPopup({
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedQuantity(Number(e.target.value));
+  };
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPlaylistName(e.target.value);
   };
 
   // Fisher-Yatesアルゴリズム
@@ -59,12 +64,12 @@ export default function GeneratePlaylistPopup({
 
       console.log("Fetched Albums:", fetchedAlbums);
 
-      setAlbums(fetchedAlbums);
+      // setAlbums(fetchedAlbums);
 
       const tracksData = await fetchAlbumsTracks(fetchedAlbums);
       console.log("Fetched Tracks:", tracksData);
 
-      setTracks(tracksData!);
+      // setTracks(tracksData!);
 
       const allTracks = Object.values(tracksData!).flat();
       const randomTracks = shuffleArray(allTracks).slice(0, selectedQuantity);
@@ -109,23 +114,26 @@ export default function GeneratePlaylistPopup({
       const userProfile = await userProfileResponse.json();
       const userId = userProfile.id;
 
-      const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: "ランダムプレイリスト",
-          description: "自動生成されたプレイリスト",
-          public: false,
-        }),
-      });
+      const playlistResponse = await fetch(
+        `https://api.spotify.com/v1/users/${userId}/playlists`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: playlistName || "ランダムプレイリスト",
+            description: "自動生成されたプレイリスト",
+            public: false,
+          }),
+        }
+      );
 
       if (!playlistResponse.ok) {
         throw new Error("プレイリストの作成に失敗しました。");
       }
-      
+
       const playlist = await playlistResponse.json();
       const playlistId = playlist.id;
 
@@ -142,13 +150,14 @@ export default function GeneratePlaylistPopup({
       });
 
       setIsPlaylistCreated(true);
+      setPlaylistName("");
       setTimeout(() => {
         setIsPlaylistCreated(false);
       }, 2000);
     } catch (error) {
       console.error("プレイリスト作成処理に失敗しました:", error);
     }
-  }
+  };
 
   return (
     <div className="w-screen h-screen bg-gray-600 bg-opacity-30 fixed inset-0">
@@ -174,25 +183,35 @@ export default function GeneratePlaylistPopup({
             </li>
           ))}
         </ul>
-        <label htmlFor="quantity">曲数</label>
-        <select
-          name="quantity"
-          id="quantity"
-          value={selectedQuantity}
-          onChange={handleQuantityChange}
-        >
-          {Array.from({ length: 50 }, (_, i) => i + 1).map((n) => (
-            <option key={n} value={n}>
-              {n}
-            </option>
-          ))}
-        </select>
-        <button
-          className="block ml-auto text-xl font-semibold bg-green-500 py-1 w-20 rounded-full hover:opacity-70"
-          onClick={handleCreatePlaylist}
-        >
-          作成
-        </button>
+        <div className="mt-4">
+          <label htmlFor="quantity">曲数: </label>
+          <select
+            name="quantity"
+            id="quantity"
+            value={selectedQuantity}
+            onChange={handleQuantityChange}
+          >
+            {Array.from({ length: 50 }, (_, i) => i + 1).map((n) => (
+              <option key={n} value={n}>
+                {n}
+              </option>
+            ))}
+          </select>
+          <label htmlFor="name" className="ml-5">プレイリスト名: </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={playlistName}
+            onChange={handleNameChange}
+          />
+          <button
+            className="block ml-auto text-xl font-semibold bg-green-500 py-1 w-20 rounded-full hover:opacity-70"
+            onClick={handleCreatePlaylist}
+          >
+            作成
+          </button>
+        </div>
         {isLoading && (
           <div className="bg-black bg-opacity-60 inset-0 fixed grid place-items-center">
             <p className="text-center">プレイリストを作成中...</p>
@@ -200,7 +219,9 @@ export default function GeneratePlaylistPopup({
         )}
         {isPlaylistCreated && (
           <div className="bg-black bg-opacity-60 inset-0 fixed grid place-items-center">
-            <p className="text-center text-green-400">プレイリストが正常に作成されました！！</p>
+            <p className="text-center text-green-400">
+              プレイリストが正常に作成されました！！
+            </p>
           </div>
         )}
       </div>
