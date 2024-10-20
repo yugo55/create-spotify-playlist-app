@@ -1,6 +1,17 @@
 import React, { SetStateAction } from "react";
 
-export default async function fetchArtistAlbums(artistId: string, setAlbums?: React.Dispatch<SetStateAction<any[]>>) {
+interface Album {
+  id: string;
+  name: string;
+  artists: Artist[];
+}
+
+interface Artist {
+  id: string;
+  name: string;
+}
+
+export default async function fetchArtistAlbums(artistId: string, setAlbums?: React.Dispatch<SetStateAction<any[]>>): Promise<Album[] | undefined> {
   try {
     // アクセストークンの取得は引数で渡したほうがいいかも
     const accessToken = localStorage.getItem("access_token");
@@ -26,7 +37,7 @@ export default async function fetchArtistAlbums(artistId: string, setAlbums?: Re
     if (setAlbums) {
       setAlbums(albums.items);
     } else {
-      return albums.items
+      return albums.items.filter((album: Album) => album.artists.some((artist: Artist) => artist.id === artistId));
     }
   } catch (error) {
     console.error("楽曲の取得に失敗しました:", error);
