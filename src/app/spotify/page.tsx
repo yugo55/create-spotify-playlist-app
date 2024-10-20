@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import GeneratePlaylistPopup from "@/src/app/ui/generatePlaylistPopup";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const router = useRouter();
   const [userData, setUserData] = useState(null);
   const [isPopupVisible, setPopupVisible] = useState(false);
 
@@ -22,6 +24,12 @@ export default function Page() {
           Authorization: `Bearer ${accessToken}`,
         },
       });
+
+      if (response.status === 401) {
+        alert("ログインタイムアウト：再度ログインしてください。");
+        router.push("/");
+      }
+      
       const data = await response.json();
       setUserData(data);
     };
