@@ -30,3 +30,7 @@ li {
   background-color: rgb(104, 104, 104);
   border-radius: 8px;
 }
+
+.playlist-li {
+  width: fit-content;
+}

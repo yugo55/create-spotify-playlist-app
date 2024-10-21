@@ -5,6 +5,8 @@ import { RootState } from "@/src/store";
 import { useEffect, useState } from "react";
 import fetchArtistAlbums from "@/src/app/tools/fetchArtistAlbums";
 import fetchAlbumsTracks from "@/src/app/tools/fetchAlbumsTracks";
+import { db } from "@/src/firebaseConfig";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 
 interface GeneratePlaylistPopupProps {
   onClose: () => void;
@@ -15,12 +17,11 @@ export default function GeneratePlaylistPopup({
 }: GeneratePlaylistPopupProps) {
   const artists = useSelector((state: RootState) => state.artist.artists);
   const [selectedArtistIds, setSelectedArtistIds] = useState<string[]>([]);
-  // const [albums, setAlbums] = useState<any[]>([]);
-  // const [tracks, setTracks] = useState<{ [key: string]: any[] }>({});
   const [selectedQuantity, setSelectedQuantity] = useState<number>(30);
   const [playlistName, setPlaylistName] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPlaylistCreated, setIsPlaylistCreated] = useState<boolean>(false);
+  const [isPlaylistCreateError, setIsPlaylistCreateError] = useState<boolean>(false);
   const [randomTracks, setRandomTracks] = useState<any[]>([]);
 
   const handleCheckboxChange = (artistId: string) => {
@@ -62,18 +63,10 @@ export default function GeneratePlaylistPopup({
       const resolvedAlbums = await Promise.all(albumsPromises);
       fetchedAlbums = resolvedAlbums.flat();
 
-      console.log("Fetched Albums:", fetchedAlbums);
-
-      // setAlbums(fetchedAlbums);
-
       const tracksData = await fetchAlbumsTracks(fetchedAlbums);
-      console.log("Fetched Tracks:", tracksData);
-
-      // setTracks(tracksData!);
 
       const allTracks = Object.values(tracksData!).flat();
       const randomTracks = shuffleArray(allTracks).slice(0, selectedQuantity);
-      console.log("randomTracks:", randomTracks);
 
       setRandomTracks(randomTracks);
     } catch (error) {
@@ -149,6 +142,22 @@ export default function GeneratePlaylistPopup({
         }),
       });
 
+      const selectedArtist = artists.find((artist) =>
+        selectedArtistIds.includes(artist.id)
+      );
+      const thumbnail = selectedArtist ? selectedArtist.images[0].url : "";
+
+      await addDoc(collection(db, "playlists"), {
+        playlistId: playlistId,
+        name: playlistName || "ランダムプレイリスト",
+        tracks: tracks.map((track) => ({
+          name: track.name,
+          artist: track.artists[0].name,
+        })),
+        thumbnail: thumbnail,
+        createdAt: Timestamp.now(),
+      });
+
       setIsPlaylistCreated(true);
       setPlaylistName("");
       setTimeout(() => {
@@ -156,6 +165,10 @@ export default function GeneratePlaylistPopup({
       }, 2000);
     } catch (error) {
       console.error("プレイリスト作成処理に失敗しました:", error);
+      setIsPlaylistCreateError(true);
+      setTimeout(() => {
+        setIsPlaylistCreated(false);
+      }, 3000);
     }
   };
 
@@ -221,6 +234,13 @@ export default function GeneratePlaylistPopup({
           <div className="bg-black bg-opacity-60 inset-0 fixed grid place-items-center">
             <p className="text-center text-green-400">
               プレイリストが正常に作成されました！！
+            </p>
+          </div>
+        )}
+        {isPlaylistCreateError && (
+          <div className="bg-black bg-opacity-60 inset-0 fixed grid place-items-center">
+            <p className="text-center text-red-400">
+              プレイリストが作成できませんでした。リロードして再度お試しください。
             </p>
           </div>
         )}
