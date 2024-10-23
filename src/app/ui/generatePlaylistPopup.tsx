@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import fetchArtistAlbums from "@/src/app/tools/fetchArtistAlbums";
 import fetchAlbumsTracks from "@/src/app/tools/fetchAlbumsTracks";
 import { db } from "@/src/firebaseConfig";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
 
 interface GeneratePlaylistPopupProps {
   onClose: () => void;
@@ -147,7 +147,7 @@ export default function GeneratePlaylistPopup({
       );
       const thumbnail = selectedArtist ? selectedArtist.images[0].url : "";
 
-      await addDoc(collection(db, "playlists"), {
+      await setDoc(doc(db, "playlists", playlistId), {
         playlistId: playlistId,
         name: playlistName || "ランダムプレイリスト",
         tracks: tracks.map((track) => ({
