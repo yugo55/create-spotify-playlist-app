@@ -2,10 +2,9 @@
 
 import { useDispatch } from "react-redux";
 import { setArtists } from "@/src/features/artist/artistSlice";
+import { useEffect } from "react";
 
-export default async function fetchFollowedArtists() {
-  const dispatch = useDispatch();
-
+export default async function fetchFollowedArtists(dispatch: any) {
   try {
     const accessToken = localStorage.getItem("access_token");
 

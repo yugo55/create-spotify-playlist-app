@@ -4,7 +4,7 @@ export const useTokenRefresh = async() => {
   const refreshAccessToken = async () => {
     const storedRefreshToken = localStorage.getItem("refresh_token");
     const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
-    const clientSecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET; // 環境変数でclientSecretも取得
+    const clientSecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
     const basicAuth = btoa(`${clientId}:${clientSecret}`);
 
     if (!storedRefreshToken || !clientId || !clientSecret) {

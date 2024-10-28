@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTokenRefresh } from "@/src/app/tools/useTokenRefresh";
 
 const SpotifyCallback = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
 
-  useTokenRefresh();
+  // useTokenRefresh();
 
   useEffect(() => {
     const getAccessToken = async () => {
@@ -31,7 +32,7 @@ const SpotifyCallback = () => {
         const response = await fetch("/api/spotify/token", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
           },
           body: JSON.stringify({
             code,
@@ -47,19 +48,22 @@ const SpotifyCallback = () => {
         const data = await response.json();
 
         localStorage.setItem("access_token", data.access_token),
-          localStorage.setItem("refresh_token", data.refresh_token),
-          console.log(
-            `アクセストークン：${localStorage.getItem("access_token")}`
-          );
+        localStorage.setItem("refresh_token", data.refresh_token),
+        console.log(
+          `アクセストークン：${localStorage.getItem("access_token")}`
+        );
         console.log(
           `リフレッシュトークン：${localStorage.getItem("refresh_token")}`
         );
+
+        await new Promise((resolve) => setTimeout(resolve, 500));
 
         // すべての処理が完了した後、Spotifyページにリダイレクト
         if (
           localStorage.getItem("access_token") &&
           localStorage.getItem("refresh_token")
         ) {
+          setIsLoading(false);
           router.push("/spotify");
         } else {
           alert(
@@ -69,13 +73,28 @@ const SpotifyCallback = () => {
         }
       } catch (error) {
         console.error("Failed to get access token:", error);
+        setIsLoading(false);
       }
     };
 
-    getAccessToken();
+    const interval = setInterval(() => {
+      if (!localStorage.getItem("access_token")) {
+        getAccessToken();
+      } else {
+        router.push("/spotify");
+        setIsLoading(false);
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, [router]);
 
-  return <div>Processing Spotify callback...</div>;
+  if (isLoading) {
+    return <div className="text-white">Processing Spotify callback...</div>;
+  }
+  
+  return null;
 };
 
 export default SpotifyCallback;
