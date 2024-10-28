@@ -1,6 +1,6 @@
-// 不完全
+import { useEffect } from "react";
 
-export const useTokenRefresh = async() => {
+export const useTokenRefresh = () => {
   const refreshAccessToken = async () => {
     const storedRefreshToken = localStorage.getItem("refresh_token");
     const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
@@ -8,7 +8,7 @@ export const useTokenRefresh = async() => {
     const basicAuth = btoa(`${clientId}:${clientSecret}`);
 
     if (!storedRefreshToken || !clientId || !clientSecret) {
-      console.error("Refresh token, client ID, or client secret not found");
+      console.error("Refresh Token, client ID, or client secret not found");
       return;
     }
 
@@ -16,12 +16,12 @@ export const useTokenRefresh = async() => {
     const payload = {
       method: "POST",
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: `Basic ${basicAuth}`, // Basic認証を使用
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${basicAuth}`,
       },
       body: new URLSearchParams({
         grant_type: "refresh_token",
-        refresh_token: storedRefreshToken,
+        refresh_token: storedRefreshToken!,
       }),
     };
 
@@ -34,7 +34,7 @@ export const useTokenRefresh = async() => {
         console.error("Error details:", errorText);
         return;
       }
-      
+
       const data = await response.json();
 
       if (data.access_token) {
@@ -43,22 +43,17 @@ export const useTokenRefresh = async() => {
 
       if (data.refresh_token) {
         localStorage.setItem("refresh_token", data.refresh_token);
+        console.log("リフレッシュトークンが正常にセットされました。");
       }
-
-      // 1時間ごとにトークンをリフレッシュ
-      setTimeout(refreshAccessToken, 3600 * 1000);
     } catch (error) {
       console.error("Failed to refresh token:", error);
     }
   };
 
-  const tokenCheckInterval = setInterval(() => {
-    const accessToken = localStorage.getItem("access_token");
-    const refreshToken = localStorage.getItem("refresh_token");
+  useEffect(() => {
+    refreshAccessToken();
+    const intervalId = setInterval(refreshAccessToken, 3600 * 1000);
 
-    if (accessToken && refreshToken) {
-      clearInterval(tokenCheckInterval);
-      refreshAccessToken();
-    }
-  }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
 };

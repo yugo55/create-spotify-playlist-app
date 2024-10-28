@@ -2,9 +2,12 @@
 
 import SideNav from "@/src/app/ui/sidenav";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { useTokenRefresh } from "@/src/app/tools/useTokenRefresh"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   // const [accessToken, setAccessToken] = useState<string | null>(null);
+
+  useTokenRefresh();
 
   // useEffect(() => {
   //   const interval = setInterval(() => {
