@@ -4,6 +4,9 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { db } from "@/src/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
+import { FaAngleLeft } from "react-icons/fa";
+import { IconContext } from 'react-icons';
+import Link from "next/link";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -31,7 +34,12 @@ export default function Page() {
     <div className="h-full p-5 pt-0 pb-0 flex flex-col overflow-y-auto">
       {playlistData ? (
         <>
-          <h1 className="text-2xl font-bold pt-5 pb-4 text-white sticky top-0 bg-[#161616]">{playlistData.name}</h1>
+          <div className="flex items-center">
+            <Link href={"/spotify"} className="hover:text-opacity-30 text-white">
+              <FaAngleLeft size={30} />
+            </Link>
+            <h1 className="text-2xl font-bold pt-5 pb-4 ml-2 text-white sticky top-0 bg-[#161616]">{playlistData.name}</h1>
+          </div>
           <p className="mb-6">作成日：{new Date(playlistData.createdAt.toMillis()).toLocaleDateString()}</p>
           <table className="text-white">
             <thead className="border-b-2 border-gray-400 text-[#878787]">
