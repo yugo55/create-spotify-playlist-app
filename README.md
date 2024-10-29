@@ -1,3 +1,6 @@
+## URL
+https://create-spotify-playlist-app.vercel.app/spotify
+
 ## 概要
 任意のお気に入りアーティストの楽曲からランダムに抽出し、プレイリストを作成するアプリ。  
 ユーザーの聴いてきた楽曲のデータを可視化する。（spotify apiにユーザーの聞いた楽曲データを取得できるapiがなかったので検討中。）
