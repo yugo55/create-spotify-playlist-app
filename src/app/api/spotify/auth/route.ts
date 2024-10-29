@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
   const params = new URLSearchParams({
     client_id: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID!,
     response_type: 'code',
-    redirect_uri: 'http://localhost:3000/spotify/callback',
+    redirect_uri: 'https://create-spotify-playlist-app.vercel.app/spotify/callback',
     code_challenge_method: 'S256',
     code_challenge: codeChallenge,
     scope: 'user-read-private user-read-email user-read-recently-played user-top-read playlist-modify-public playlist-modify-private streaming user-follow-read',

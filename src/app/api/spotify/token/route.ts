@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
     client_id: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID!,
     grant_type: 'authorization_code',
     code,
-    redirect_uri: 'http://localhost:3000/spotify/callback',
+    redirect_uri: 'https://create-spotify-playlist-app.vercel.app/spotify/callback',
     code_verifier: codeVerifier,
   });
 
