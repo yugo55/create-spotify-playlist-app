@@ -376,3 +376,251 @@ Error occurred prerendering page "/spotify/playlist". Read more: https://nextjs.
 [debug] [2024-10-29T13:42:47.501Z] Error: ENOENT: no such file or directory, open '/Users/akasa/dev/product/spotify/.next/export-marker.json'
 [error] 
 [error] Error: An unexpected error has occurred.
+[debug] [2024-10-29T13:51:18.201Z] ----------------------------------------------------------------------
+[debug] [2024-10-29T13:51:18.207Z] Command:       /Users/akasa/.nodenv/versions/20.11.1/bin/node /Users/akasa/.nodenv/versions/20.11.1/bin/firebase deploy
+[debug] [2024-10-29T13:51:18.207Z] CLI Version:   13.23.0
+[debug] [2024-10-29T13:51:18.207Z] Platform:      darwin
+[debug] [2024-10-29T13:51:18.207Z] Node Version:  v20.11.1
+[debug] [2024-10-29T13:51:18.207Z] Time:          Tue Oct 29 2024 22:51:18 GMT+0900 (日本標準時)
+[debug] [2024-10-29T13:51:18.208Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-10-29T13:51:18.242Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-29T13:51:18.242Z] > authorizing via signed-in user (akasatana0064@gmail.com)
+[debug] [2024-10-29T13:51:18.242Z] [iam] checking project spotify-create-playlist-app for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-10-29T13:51:18.242Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:51:18.242Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:51:18.243Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/spotify-create-playlist-app:testIamPermissions [none]
+[debug] [2024-10-29T13:51:18.243Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/spotify-create-playlist-app:testIamPermissions x-goog-quota-user=projects/spotify-create-playlist-app
+[debug] [2024-10-29T13:51:18.243Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/spotify-create-playlist-app:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-10-29T13:51:19.035Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/spotify-create-playlist-app:testIamPermissions 200
+[debug] [2024-10-29T13:51:19.035Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/spotify-create-playlist-app:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-10-29T13:51:19.036Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:51:19.036Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:51:19.037Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/spotify-create-playlist-app [none]
+[debug] [2024-10-29T13:51:19.428Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/spotify-create-playlist-app 200
+[debug] [2024-10-29T13:51:19.428Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/spotify-create-playlist-app {"projectId":"spotify-create-playlist-app","projectNumber":"277752625450","displayName":"spotify-create-playlist-app","name":"projects/spotify-create-playlist-app","resources":{"hostingSite":"spotify-create-playlist-app"},"state":"ACTIVE","etag":"1_1d513a42-838e-4ce2-82c4-ce56d1742dda"}
+[debug] [2024-10-29T13:51:20.130Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:51:20.130Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:51:20.130Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites pageToken=&pageSize=10
+[debug] [2024-10-29T13:51:20.872Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites 200
+[debug] [2024-10-29T13:51:20.872Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites {"sites":[{"name":"projects/spotify-create-playlist-app/sites/spotify-create-playlist-app","defaultUrl":"https://spotify-create-playlist-app.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2024-10-29T13:51:20.874Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:51:20.874Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:51:20.874Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites 
+[debug] [2024-10-29T13:51:21.257Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites 200
+[debug] [2024-10-29T13:51:21.258Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites {"sites":[{"name":"projects/spotify-create-playlist-app/sites/spotify-create-playlist-app","defaultUrl":"https://spotify-create-playlist-app.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2024-10-29T13:51:21.258Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:51:21.258Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:51:21.258Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/spotify-create-playlist-app/webApps/-/config [none]
+[debug] [2024-10-29T13:51:22.093Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/spotify-create-playlist-app/webApps/-/config 200
+[debug] [2024-10-29T13:51:22.094Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/spotify-create-playlist-app/webApps/-/config {"projectId":"spotify-create-playlist-app","appId":"1:277752625450:web:9cc72d8aeee4c791e14653","storageBucket":"spotify-create-playlist-app.appspot.com","apiKey":"AIzaSyBFp9fguv6rVy4Z8arGsipEC0KhFs1kAlw","authDomain":"spotify-create-playlist-app.firebaseapp.com","messagingSenderId":"277752625450","measurementId":"G-0JM8H8PRML"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 14.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-10-29T13:51:23.452Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:51:23.452Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:51:23.452Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites/spotify-create-playlist-app [none]
+[debug] [2024-10-29T13:51:23.834Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites/spotify-create-playlist-app 200
+[debug] [2024-10-29T13:51:23.835Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites/spotify-create-playlist-app {"name":"projects/spotify-create-playlist-app/sites/spotify-create-playlist-app","defaultUrl":"https://spotify-create-playlist-app.web.app","type":"DEFAULT_SITE"}
+[info]   ▲ Next.js 14.2.5
+
+[info]   - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info] 
+./src/app/spotify/artist/page.tsx
+54:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/ui/generatePlaylistPopup.tsx
+86:6  Warning: React Hook useEffect has a missing dependency: 'createSpotifyPlaylist'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/12) ...
+
+[info]  ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/spotify/artist". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/Users/akasa/dev/product/spotify/.next/server/chunks/209.js:1:10696)
+    at s (/Users/akasa/dev/product/spotify/.next/server/chunks/209.js:1:21646)
+    at i (/Users/akasa/dev/product/spotify/.next/server/app/spotify/artist/page.js:1:3267)
+    at nj (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nN (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nI (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47010)
+    at nM (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47717)
+    at nM (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+
+Error occurred prerendering page "/spotify/artist". Read more: https://nextjs.org/docs/messages/prerender-error
+
+
+[info]    Generating static pages (3/12) 
+   Generating static pages (6/12) 
+
+[info]    Generating static pages (9/12) 
+
+[info]  ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/spotify/playlist". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/Users/akasa/dev/product/spotify/.next/server/chunks/209.js:1:10696)
+    at s (/Users/akasa/dev/product/spotify/.next/server/chunks/209.js:1:21646)
+    at x (/Users/akasa/dev/product/spotify/.next/server/app/spotify/playlist/page.js:1:9226)
+    at nj (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nN (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nI (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47010)
+    at nM (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47717)
+    at nM (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+
+Error occurred prerendering page "/spotify/playlist". Read more: https://nextjs.org/docs/messages/prerender-error
+
+
+[info]  ✓ Generating static pages (12/12)
+
+[info] 
+
+[info] > Export encountered errors on following paths:
+	/spotify/artist/page: /spotify/artist
+	/spotify/playlist/page: /spotify/playlist
+
+[debug] [2024-10-29T13:51:29.333Z] Error: ENOENT: no such file or directory, open '/Users/akasa/dev/product/spotify/.next/export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2024-10-29T13:53:04.635Z] ----------------------------------------------------------------------
+[debug] [2024-10-29T13:53:04.637Z] Command:       /Users/akasa/.nodenv/versions/20.11.1/bin/node /Users/akasa/.nodenv/versions/20.11.1/bin/firebase deploy
+[debug] [2024-10-29T13:53:04.637Z] CLI Version:   13.23.0
+[debug] [2024-10-29T13:53:04.637Z] Platform:      darwin
+[debug] [2024-10-29T13:53:04.637Z] Node Version:  v20.11.1
+[debug] [2024-10-29T13:53:04.637Z] Time:          Tue Oct 29 2024 22:53:04 GMT+0900 (日本標準時)
+[debug] [2024-10-29T13:53:04.637Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-10-29T13:53:04.671Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-29T13:53:04.671Z] > authorizing via signed-in user (akasatana0064@gmail.com)
+[debug] [2024-10-29T13:53:04.671Z] [iam] checking project spotify-create-playlist-app for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-10-29T13:53:04.672Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:53:04.672Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:53:04.672Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/spotify-create-playlist-app:testIamPermissions [none]
+[debug] [2024-10-29T13:53:04.672Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/spotify-create-playlist-app:testIamPermissions x-goog-quota-user=projects/spotify-create-playlist-app
+[debug] [2024-10-29T13:53:04.672Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/spotify-create-playlist-app:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-10-29T13:53:05.425Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/spotify-create-playlist-app:testIamPermissions 200
+[debug] [2024-10-29T13:53:05.426Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/spotify-create-playlist-app:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-10-29T13:53:05.426Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:53:05.426Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:53:05.427Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/spotify-create-playlist-app [none]
+[debug] [2024-10-29T13:53:05.826Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/spotify-create-playlist-app 200
+[debug] [2024-10-29T13:53:05.827Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/spotify-create-playlist-app {"projectId":"spotify-create-playlist-app","projectNumber":"277752625450","displayName":"spotify-create-playlist-app","name":"projects/spotify-create-playlist-app","resources":{"hostingSite":"spotify-create-playlist-app"},"state":"ACTIVE","etag":"1_1d513a42-838e-4ce2-82c4-ce56d1742dda"}
+[debug] [2024-10-29T13:53:06.437Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:53:06.437Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:53:06.438Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites pageToken=&pageSize=10
+[debug] [2024-10-29T13:53:07.034Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites 200
+[debug] [2024-10-29T13:53:07.034Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites {"sites":[{"name":"projects/spotify-create-playlist-app/sites/spotify-create-playlist-app","defaultUrl":"https://spotify-create-playlist-app.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2024-10-29T13:53:07.036Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:53:07.036Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:53:07.036Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites 
+[debug] [2024-10-29T13:53:07.465Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites 200
+[debug] [2024-10-29T13:53:07.466Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites {"sites":[{"name":"projects/spotify-create-playlist-app/sites/spotify-create-playlist-app","defaultUrl":"https://spotify-create-playlist-app.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2024-10-29T13:53:07.466Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:53:07.466Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:53:07.467Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/spotify-create-playlist-app/webApps/-/config [none]
+[debug] [2024-10-29T13:53:08.284Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/spotify-create-playlist-app/webApps/-/config 200
+[debug] [2024-10-29T13:53:08.284Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/spotify-create-playlist-app/webApps/-/config {"projectId":"spotify-create-playlist-app","appId":"1:277752625450:web:9cc72d8aeee4c791e14653","storageBucket":"spotify-create-playlist-app.appspot.com","apiKey":"AIzaSyBFp9fguv6rVy4Z8arGsipEC0KhFs1kAlw","authDomain":"spotify-create-playlist-app.firebaseapp.com","messagingSenderId":"277752625450","measurementId":"G-0JM8H8PRML"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 14.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-10-29T13:53:09.642Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:53:09.642Z] Checked if tokens are valid: true, expires at: 1730212455566
+[debug] [2024-10-29T13:53:09.642Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites/spotify-create-playlist-app [none]
+[debug] [2024-10-29T13:53:10.128Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites/spotify-create-playlist-app 200
+[debug] [2024-10-29T13:53:10.129Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/spotify-create-playlist-app/sites/spotify-create-playlist-app {"name":"projects/spotify-create-playlist-app/sites/spotify-create-playlist-app","defaultUrl":"https://spotify-create-playlist-app.web.app","type":"DEFAULT_SITE"}
+[info]   ▲ Next.js 14.2.5
+
+[info]   - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info] 
+./src/app/spotify/artist/page.tsx
+54:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/ui/generatePlaylistPopup.tsx
+86:6  Warning: React Hook useEffect has a missing dependency: 'createSpotifyPlaylist'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/12) ...
+
+[info]  ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/spotify/artist". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/Users/akasa/dev/product/spotify/.next/server/chunks/209.js:1:10696)
+    at s (/Users/akasa/dev/product/spotify/.next/server/chunks/209.js:1:21646)
+    at i (/Users/akasa/dev/product/spotify/.next/server/app/spotify/artist/page.js:1:3267)
+    at nj (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nN (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nI (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47010)
+    at nM (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47717)
+    at nM (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+
+Error occurred prerendering page "/spotify/artist". Read more: https://nextjs.org/docs/messages/prerender-error
+
+
+[info]    Generating static pages (3/12) 
+   Generating static pages (6/12) 
+
+[info]    Generating static pages (9/12) 
+
+[info]  ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/spotify/playlist". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/Users/akasa/dev/product/spotify/.next/server/chunks/209.js:1:10696)
+    at s (/Users/akasa/dev/product/spotify/.next/server/chunks/209.js:1:21646)
+    at x (/Users/akasa/dev/product/spotify/.next/server/app/spotify/playlist/page.js:1:9226)
+    at nj (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nN (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nI (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47010)
+    at nM (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47717)
+    at nM (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/Users/akasa/dev/product/spotify/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+
+Error occurred prerendering page "/spotify/playlist". Read more: https://nextjs.org/docs/messages/prerender-error
+
+
+[info]  ✓ Generating static pages (12/12)
+
+[info] 
+
+[info] > Export encountered errors on following paths:
+	/spotify/artist/page: /spotify/artist
+	/spotify/playlist/page: /spotify/playlist
+
+[debug] [2024-10-29T13:53:15.424Z] Error: ENOENT: no such file or directory, open '/Users/akasa/dev/product/spotify/.next/export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.

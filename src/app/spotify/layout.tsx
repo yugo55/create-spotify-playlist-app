@@ -2,7 +2,8 @@
 
 import SideNav from "@/src/app/ui/sidenav";
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { useTokenRefresh } from "@/src/app/tools/useTokenRefresh"
+import { useTokenRefresh } from "@/src/app/tools/useTokenRefresh";
+import { Suspense } from "react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   // const [accessToken, setAccessToken] = useState<string | null>(null);
@@ -66,7 +67,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex p-3 gap-3 h-screen overflow-hidden bg-black">
       <SideNav />
-      <div className="flex-grow bg-[#161616] rounded-lg">{children}</div>
+      <Suspense>
+        <div className="flex-grow bg-[#161616] rounded-lg">{children}</div>
+      </Suspense>
     </div>
   );
 }
