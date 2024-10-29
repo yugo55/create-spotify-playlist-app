@@ -13,8 +13,10 @@ export default async function fetchFollowedArtists(dispatch: any) {
       return;
     }
 
+    // 取得できるフォロー中のアーティストは50まで。
+    // 他のユーザーが使うことを考えたらもっと取得できるようにしないといけない。
     const response = await fetch(
-      "https://api.spotify.com/v1/me/following?type=artist",
+      "https://api.spotify.com/v1/me/following?type=artist&limit=50",
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
