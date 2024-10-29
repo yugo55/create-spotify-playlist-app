@@ -31,7 +31,7 @@ export default function Page() {
   }, [playlistId]);
   
   return(
-    <Suspense>
+    <Suspense fallback={<div className="text-white">Loading...</div>}>
       <div className="h-full p-5 pt-0 pb-0 flex flex-col overflow-y-auto">
         {playlistData ? (
           <>
