@@ -10,38 +10,6 @@ export default function Page() {
   const [userData, setUserData] = useState(null);
   const [isPopupVisible, setPopupVisible] = useState(false);
 
-  //　ユーザー情報の取得。必要ないかも
-  // useEffect(() => {
-  //   console.log("実行");
-  //   const fetchUserData = async () => {
-  //     const accessToken = localStorage.getItem("access_token");
-  //     if (!accessToken) {
-  //       console.error("No access token found");
-  //       return;
-  //     }
-
-  //     const response = await fetch("https://api.spotify.com/v1/me", {
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     });
-
-  //     if (response.status === 401) {
-  //       alert("ログインタイムアウト：再度ログインしてください。");
-  //       router.push("/");
-  //     }
-      
-  //     const data = await response.json();
-  //     setUserData(data);
-  //   };
-
-  //   fetchUserData();
-  // }, []);
-
-  // if (!userData) {
-  //   return <div>Loading...</div>;
-  // }
-
   const togglePopup = () => {
     setPopupVisible(!isPopupVisible);
   };

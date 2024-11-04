@@ -2,13 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useTokenRefresh } from "@/src/app/tools/useTokenRefresh";
 
 const SpotifyCallback = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
-
-  // useTokenRefresh();
 
   useEffect(() => {
     const getAccessToken = async () => {

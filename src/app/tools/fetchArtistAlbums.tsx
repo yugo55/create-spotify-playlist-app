@@ -13,7 +13,6 @@ interface Artist {
 
 export default async function fetchArtistAlbums(artistId: string, setAlbums?: React.Dispatch<SetStateAction<any[]>>): Promise<Album[] | undefined> {
   try {
-    // アクセストークンの取得は引数で渡したほうがいいかも
     const accessToken = localStorage.getItem("access_token");
     if (!accessToken) {
       console.error("アクセストークンが見つかりません。");

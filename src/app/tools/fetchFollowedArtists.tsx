@@ -1,8 +1,6 @@
 // フォロー中のアーティスト情報を取得
 
-import { useDispatch } from "react-redux";
 import { setArtists } from "@/src/features/artist/artistSlice";
-import { useEffect } from "react";
 
 export default async function fetchFollowedArtists(dispatch: any) {
   try {
