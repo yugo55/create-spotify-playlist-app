@@ -9,11 +9,13 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function SideNav() {
-  const followedArtists = useSelector((state: RootState) => state.artist.artists);
+  const followedArtists = useSelector(
+    (state: RootState) => state.artist.artists
+  );
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
   const [accessToken, setAccessToken] = useState<string | null>(null);
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (localStorage.getItem("access_token")) {
@@ -27,7 +29,7 @@ export default function SideNav() {
 
     return () => clearInterval(interval);
   }, []);
-  
+
   useEffect(() => {
     const fetchArtists = async () => {
       if (accessToken) {
@@ -35,10 +37,10 @@ export default function SideNav() {
         setIsLoading(false);
       }
     };
-    
+
     fetchArtists();
   }, [accessToken, dispatch]);
-  
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -46,8 +48,8 @@ export default function SideNav() {
   const handleLogout = () => {
     localStorage.removeItem("access_token");
     window.location.href = "/";
-  }
-  
+  };
+
   return (
     <div className="flex flex-col justify-between h-full gap-3 w-96">
       <div className="w-full p-5 rounded-lg bg-[#161616]">
@@ -77,10 +79,8 @@ export default function SideNav() {
               >
                 <Image
                   src={artist.images[0]?.url}
-                  width={50}
-                  height={50}
                   alt=""
-                  className="rounded-full"
+                  className="rounded-full w-[50px] h-[50px]"
                 />
                 <p className="ml-3">{artist.name}</p>
               </Link>
@@ -88,7 +88,12 @@ export default function SideNav() {
           ))}
         </ul>
       </div>
-      <button className="ml-2 text-white bg-[#161616] block p-5 text-left rounded-lg" onClick={handleLogout}>Log out</button>
+      <button
+        className="ml-2 text-white bg-[#161616] block p-5 text-left rounded-lg"
+        onClick={handleLogout}
+      >
+        Log out
+      </button>
     </div>
   );
 }
