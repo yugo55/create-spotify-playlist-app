@@ -2,7 +2,8 @@
 https://create-spotify-playlist-app.vercel.app/spotify
 
 ## 概要
-任意のお気に入りアーティストの楽曲からランダムに抽出し、プレイリストを作成するアプリ。  
+任意のお気に入りアーティストの楽曲からランダムに抽出し、プレイリストを作成するアプリ。
+作成したプレイリストはSpotifyのネイティブアプリに反映される。
 
 ![アプリトップページ](https://github.com/user-attachments/assets/6f3f2b28-f8e4-48fd-bb89-522a586df578)
 ![プレイリストページ](https://github.com/user-attachments/assets/caee9930-6c2e-48ed-a443-40656b09110b)
